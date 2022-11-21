@@ -6,10 +6,13 @@ module.exports = {
     try {
       const bearerToken = req.headers.authorization;
       const token = bearerToken.split('Bearer ')[1];
-      const tokenPayload = jwt.verify(
-        token,
-        process.env.JWT_PRIVATE_KEY || 'rahasia',
-      );
+      const tokenPayload = jwt.verify(token, process.env.JWT_PRIVATE_KEY || 'rahasia');
+
+      // console.log('tes');
+      // res.status(201).json({
+      //   status: 'OK',
+      //   messasge: 'berhasil',
+      // });
 
       req.user = await userService.get(tokenPayload.id);
       next();
