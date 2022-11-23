@@ -33,6 +33,27 @@ appRouter.get(
   controllers.api.v1.userController.getData
 );
 
+appRouter.post(
+  '/api/v1/product',
+  middlewares.authorization.authorize,
+  multerUploads,
+  controllers.api.v1.imageController.multerUploads,
+  controllers.api.v1.productController.create
+);
+
+appRouter.get('/api/v1/product/:id', controllers.api.v1.productController.show);
+
+appRouter.get('/api/v1/product', controllers.api.v1.productController.list);
+
+// appRouter.post(
+//   '/api/v1/product',
+//   middlewares.authorization.authorize,
+//   multerUploads,
+//   controllers.api.v1.imageController.multerUploads,
+//   controllers.api.v1.productController.create,
+//   controllers.api.v1.historyController.create
+// );
+
 // Open API Document
 apiRouter.use('/api-docs', swaggerUi.serve);
 apiRouter.get('/api-docs', swaggerUi.setup(swaggerDocument));

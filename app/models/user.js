@@ -9,9 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // User.hasMany(models.Product, {
-      //   foreignKey: 'id_user',
-      // });
+      User.hasMany(models.Product, {
+        foreignKey: 'id_user',
+      });
       // User.hasMany(models.Offer, {
       //   foreignKey: 'id_user',
       // });
@@ -34,13 +34,10 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'Email already used',
         },
       },
-
       password: DataTypes.STRING,
-      no_tlpn: DataTypes.STRING,
-      city: DataTypes.STRING,
+      phone: DataTypes.STRING,
       address: DataTypes.STRING,
-      image: DataTypes.STRING,
-      wishlist: DataTypes.ARRAY(DataTypes.INTEGER),
+      image: DataTypes.ARRAY(DataTypes.TEXT),
     },
     {
       sequelize,

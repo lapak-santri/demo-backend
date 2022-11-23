@@ -2,7 +2,7 @@ module.exports = {
   index(req, res) {
     res.status(200).send({
       status: 'OK',
-      message: 'Backend Second Hand is up and running!',
+      message: 'Lapak Santri Backend is up and running!',
     });
   },
 
