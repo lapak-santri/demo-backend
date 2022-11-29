@@ -45,14 +45,31 @@ appRouter.get('/api/v1/product/:id', controllers.api.v1.productController.show);
 
 appRouter.get('/api/v1/product', controllers.api.v1.productController.list);
 
-// appRouter.post(
-//   '/api/v1/product',
-//   middlewares.authorization.authorize,
-//   multerUploads,
-//   controllers.api.v1.imageController.multerUploads,
-//   controllers.api.v1.productController.create,
-//   controllers.api.v1.historyController.create
-// );
+appRouter.post(
+  '/api/v1/slider',
+  middlewares.authorization.authorize,
+  multerUploads,
+  controllers.api.v1.imageController.multerUploads,
+  controllers.api.v1.sliderController.create
+);
+
+appRouter.get('/api/v1/slider', controllers.api.v1.sliderController.list);
+
+appRouter.get('/api/v1/slider/:id', controllers.api.v1.sliderController.show);
+
+appRouter.put(
+  '/api/v1/slider/:id',
+  middlewares.authorization.authorize,
+  multerUploads,
+  controllers.api.v1.imageController.multerUploads,
+  controllers.api.v1.sliderController.update
+);
+
+appRouter.delete(
+  '/api/v1/slider/:id',
+  middlewares.authorization.authorize,
+  controllers.api.v1.sliderController.delete
+);
 
 // Open API Document
 apiRouter.use('/api-docs', swaggerUi.serve);
