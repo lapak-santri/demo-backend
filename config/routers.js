@@ -71,6 +71,32 @@ appRouter.delete(
   controllers.api.v1.sliderController.delete
 );
 
+appRouter.post(
+  '/api/v1/article',
+  middlewares.authorization.authorize,
+  multerUploads,
+  controllers.api.v1.imageController.multerUploads,
+  controllers.api.v1.articleController.create
+);
+
+appRouter.get('/api/v1/article', controllers.api.v1.articleController.list);
+
+appRouter.get('/api/v1/article/:id', controllers.api.v1.articleController.show);
+
+appRouter.put(
+  '/api/v1/article/:id',
+  middlewares.authorization.authorize,
+  multerUploads,
+  controllers.api.v1.imageController.multerUploads,
+  controllers.api.v1.articleController.update
+);
+
+appRouter.delete(
+  '/api/v1/article/:id',
+  middlewares.authorization.authorize,
+  controllers.api.v1.articleController.delete
+);
+
 // Open API Document
 apiRouter.use('/api-docs', swaggerUi.serve);
 apiRouter.get('/api-docs', swaggerUi.setup(swaggerDocument));
