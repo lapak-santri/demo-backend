@@ -69,7 +69,7 @@ module.exports = {
     sliderService.delete(req.params.id).then(() => {
       res.status(200).json({
         status: 'OK',
-        message: 'Slider deleted Successfully',
+        message: 'Slider deleted successfully',
       });
     });
   },
