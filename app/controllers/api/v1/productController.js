@@ -29,7 +29,6 @@ module.exports = {
         include: [
           {
             model: User,
-            include: { all: true },
           },
         ],
         order: [['id', 'DESC']],

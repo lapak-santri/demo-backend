@@ -97,6 +97,30 @@ appRouter.delete(
   controllers.api.v1.articleController.delete
 );
 
+appRouter.post(
+  '/api/v1/cart',
+  middlewares.authorization.authorize,
+  controllers.api.v1.cartController.create
+);
+
+appRouter.get(
+  '/api/v1/cart',
+  middlewares.authorization.authorize,
+  controllers.api.v1.cartController.list
+);
+
+appRouter.put(
+  '/api/v1/cart',
+  middlewares.authorization.authorize,
+  controllers.api.v1.cartController.update
+);
+
+appRouter.delete(
+  '/api/v1/cart',
+  middlewares.authorization.authorize,
+  controllers.api.v1.cartController.delete
+);
+
 // Open API Document
 apiRouter.use('/api-docs', swaggerUi.serve);
 apiRouter.get('/api-docs', swaggerUi.setup(swaggerDocument));
