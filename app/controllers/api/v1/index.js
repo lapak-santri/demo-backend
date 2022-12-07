@@ -5,6 +5,7 @@ const sliderController = require('./sliderController');
 const articleController = require('./articleController');
 const cartController = require('./cartController');
 const addressController = require('./addressController');
+const transactionController = require('./transactionController');
 
 module.exports = {
   userController,
@@ -14,4 +15,5 @@ module.exports = {
   articleController,
   cartController,
   addressController,
+  transactionController,
 };

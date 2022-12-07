@@ -145,6 +145,18 @@ appRouter.delete(
   controllers.api.v1.addressController.delete
 );
 
+appRouter.post(
+  '/api/v1/transaction',
+  middlewares.authorization.authorize,
+  controllers.api.v1.transactionController.createTransactionToken
+);
+
+appRouter.get(
+  '/api/v1/transaction',
+  middlewares.authorization.authorize,
+  controllers.api.v1.transactionController.list
+);
+
 // Open API Document
 apiRouter.use('/api-docs', swaggerUi.serve);
 apiRouter.get('/api-docs', swaggerUi.setup(swaggerDocument));
