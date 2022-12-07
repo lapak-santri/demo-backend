@@ -19,7 +19,7 @@ module.exports = {
         count: sliderCount,
       };
     } catch (ex) {
-      console.err(ex);
+      console.log(ex);
       throw ex;
     }
   },
