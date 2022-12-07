@@ -19,7 +19,7 @@ module.exports = {
         count: articleCount,
       };
     } catch (ex) {
-      console.err(ex);
+      console.log(ex);
       throw ex;
     }
   },
