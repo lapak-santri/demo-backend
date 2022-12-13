@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize');
 const transactionService = require('../../../services/transactionService');
+const productService = require('../../../services/productService');
+const cartService = require('../../../services/cartService');
 const { User, Product } = require('../../../models');
 const midtransClient = require('midtrans-client');
 
@@ -52,7 +54,21 @@ module.exports = {
         token: transactionMidtrans.token,
         redirect_url: transactionMidtrans.redirect_url,
       });
-      res.status(201).json({
+
+      const detailProducts = req.body.detail;
+
+      detailProducts.forEach(async (detail) => {
+        const product = await productService.getOne({
+          where: { id: detail.id_product },
+        });
+
+        const newQuantity = product.quantity - detail.quantity;
+
+        await productService.update(product.id, { quantity: newQuantity, ...product });
+        await cartService.delete(detail.id_cart);
+      });
+
+      await res.status(201).json({
         status: 'Successfully created transaction',
         transactionMidtrans,
         transaction,
