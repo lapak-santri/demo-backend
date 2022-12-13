@@ -29,7 +29,7 @@ module.exports = {
   delete(id) {
     return Cart.destroy({
       where: {
-        id_user: id,
+        id,
       },
     });
   },

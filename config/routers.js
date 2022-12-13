@@ -116,7 +116,7 @@ appRouter.put(
 );
 
 appRouter.delete(
-  '/api/v1/cart',
+  '/api/v1/cart/:id',
   middlewares.authorization.authorize,
   controllers.api.v1.cartController.delete
 );

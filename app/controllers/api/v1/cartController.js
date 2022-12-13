@@ -95,7 +95,7 @@ module.exports = {
 
   delete(req, res) {
     cartService
-      .delete(req.user.id)
+      .delete(req.params.id)
       .then(() => {
         res.status(200).json({
           status: 'OK',
