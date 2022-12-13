@@ -5,33 +5,23 @@ const { Op } = Sequelize;
 
 module.exports = {
   async create(req, res) {
-    req.body.id_user = req.user.id;
-
-    const cartUser = await cartService.getOne({
-      where: { id_user: req.user.id, id_product: req.body.id_product },
-      include: [
-        {
-          model: User,
-        },
-        {
-          model: Product,
-        },
-      ],
+    const payload = req.body.map((item) => {
+      return {
+        ...item,
+        id_user: req.user.id,
+      };
     });
 
-    if (cartUser) {
-      const cart = await cartService.update(cartUser.id, {
-        quantity: cartUser.quantity + req.body.quantity,
-      });
-      res.status(200).json({
-        status: 'OK',
-        data: cart[1],
-      });
-    } else {
-      const cartUser = await cartService.create(req.body);
+    try {
+      const cart = await cartService.create(payload);
       res.status(201).json({
         status: 'OK',
-        data: cartUser,
+        data: cart,
+      });
+    } catch (error) {
+      res.status(500).json({
+        status: 'FAIL',
+        message: error.message,
       });
     }
   },
@@ -39,14 +29,6 @@ module.exports = {
   list(req, res) {
     cartService
       .list({
-        include: [
-          {
-            model: User,
-          },
-          {
-            model: Product,
-          },
-        ],
         where: {
           id_user: req.user.id,
         },
