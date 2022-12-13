@@ -1,18 +1,18 @@
 const Sequelize = require('sequelize');
-const productService = require('../../../services/productService');
+const addressService = require('../../../services/addressService');
 const { User } = require('../../../models');
-const { Op } = Sequelize;
 
 module.exports = {
   create(req, res) {
     req.body.id_user = req.user.id;
+    console.log(req.body);
 
-    productService
+    addressService
       .create(req.body)
-      .then((product) => {
+      .then((address) => {
         res.status(201).json({
-          status: 'OK',
-          data: product,
+          status: 'Address Added Successfully',
+          data: address,
         });
       })
       .catch((err) => {
@@ -24,13 +24,11 @@ module.exports = {
   },
 
   list(req, res) {
-    productService
+    addressService
       .list({
-        include: [
-          {
-            model: User,
-          },
-        ],
+        where: {
+          id_user: req.user.id,
+        },
         order: [['id', 'DESC']],
       })
       .then((data, count) => {
@@ -44,7 +42,7 @@ module.exports = {
   },
 
   show(req, res) {
-    productService
+    addressService
       .getOne({
         where: { id: req.params.id },
         include: [
@@ -54,29 +52,30 @@ module.exports = {
           },
         ],
       })
-      .then((product) => {
+      .then((address) => {
         res.status(200).json({
           status: 'OK',
-          data: product,
+          data: address,
         });
       });
   },
 
   update(req, res) {
     req.body.id_user = req.user.id;
-    productService.update(req.params.id, req.body).then(() => {
+    addressService.update(req.params.id, req.body).then((address) => {
       res.status(200).json({
         status: 'OK',
-        message: 'Data Updated Successfully',
+        message: 'Address Updated Successfully',
+        data: address[1],
       });
     });
   },
 
   delete(req, res) {
-    productService.delete(req.params.id).then(() => {
+    addressService.delete(req.params.id).then(() => {
       res.status(200).json({
         status: 'OK',
-        message: 'Data Deleted Successfully',
+        message: 'Address Deleted Successfully',
       });
     });
   },

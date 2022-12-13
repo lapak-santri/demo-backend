@@ -12,15 +12,12 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Product, {
         foreignKey: 'id_user',
       });
-      // User.hasMany(models.Offer, {
-      //   foreignKey: 'id_user',
-      // });
-      // User.hasMany(models.History, {
-      //   foreignKey: 'id_buyer',
-      // });
-      // User.hasMany(models.History, {
-      //   foreignKey: 'id_seller',
-      // });
+      User.hasMany(models.Cart, {
+        foreignKey: 'id_user',
+      });
+      User.hasMany(models.Address, {
+        foreignKey: 'id_user',
+      });
     }
   }
   User.init(
@@ -36,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       password: DataTypes.STRING,
       phone: DataTypes.STRING,
-      address: DataTypes.STRING,
+      address: DataTypes.TEXT,
       image: DataTypes.ARRAY(DataTypes.TEXT),
     },
     {
