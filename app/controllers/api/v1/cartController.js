@@ -32,6 +32,11 @@ module.exports = {
         where: {
           id_user: req.user.id,
         },
+        include: [
+          {
+            model: Product,
+          },
+        ],
         order: [['id', 'DESC']],
       })
       .then((data, count) => {
