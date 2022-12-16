@@ -116,7 +116,7 @@ appRouter.put(
 );
 
 appRouter.delete(
-  '/api/v1/cart',
+  '/api/v1/cart/:id',
   middlewares.authorization.authorize,
   controllers.api.v1.cartController.delete
 );
@@ -143,6 +143,18 @@ appRouter.delete(
   '/api/v1/address/:id',
   middlewares.authorization.authorize,
   controllers.api.v1.addressController.delete
+);
+
+appRouter.post(
+  '/api/v1/transaction',
+  middlewares.authorization.authorize,
+  controllers.api.v1.transactionController.createTransactionToken
+);
+
+appRouter.get(
+  '/api/v1/transaction',
+  middlewares.authorization.authorize,
+  controllers.api.v1.transactionController.list
 );
 
 // Open API Document

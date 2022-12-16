@@ -2,7 +2,7 @@ const { Cart } = require('../models');
 
 module.exports = {
   create(createArgs) {
-    return Cart.create(createArgs);
+    return Cart.bulkCreate(createArgs);
   },
 
   update(id, updateArgs) {
@@ -29,7 +29,7 @@ module.exports = {
   delete(id) {
     return Cart.destroy({
       where: {
-        id_user: id,
+        id,
       },
     });
   },
