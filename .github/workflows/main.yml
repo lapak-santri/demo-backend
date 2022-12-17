@@ -10,9 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set environment variable
-      - uses: actions/checkout@v2
         env:
           PORT: ${{secrets.PORT}}
-      - name: Print environment variable
         run: echo $PORT
-
