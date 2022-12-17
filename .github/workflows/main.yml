@@ -12,4 +12,12 @@ jobs:
       - name: Set environment variable
         env:
           PORT: ${{secrets.PORT}}
+          JWT_SIGNATURE_KEY: ${{secrets.JWT_SIGNATURE_KEY}}
+          cloud_name: ${{secrets.cloud_name}}
+          api_key: ${{secrets.api_key}}
+          api_secret: ${{secrets.api_secret}}
+          USER_PASSWORD: ${{secrets.USER_PASSWORD}}
+          YOUR_SERVER_KEY: ${{secrets.YOUR_SERVER_KEY}}
+          YOUR_CLIENT_KEY: ${{secrets.YOUR_CLIENT_KEY}}
+          NODE_ENV: ${{secrets.NODE_ENV}}
         run: echo $PORT
