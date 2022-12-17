@@ -16,12 +16,6 @@ module.exports = {
     host: DB_HOST,
     port: DB_PORT,
     dialect: 'postgres',
-    // dialectOptions: {
-    //   ssl: {
-    //     require: true,
-    //     rejectUnauthorized: false,
-    //   },
-    // },
   },
   test: {
     username: DB_USER,
@@ -38,11 +32,11 @@ module.exports = {
     },
   },
   production: {
-    username: DB_USER,
-    password: DB_PASSWORD,
-    database: `${DB_NAME}`,
-    host: DB_HOST,
-    port: DB_PORT,
+    username: 'xsjwrtoz',
+    password: 'g3G3a4livZTFFJnsKTC6omlrWavVW6l5',
+    database: `xsjwrtoz`,
+    host: 'john.db.elephantsql.com',
+    port: '5432',
     dialect: 'postgres',
     dialectOptions: {
       ssl: {

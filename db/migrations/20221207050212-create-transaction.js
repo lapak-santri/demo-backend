@@ -44,6 +44,9 @@ module.exports = {
       redirect_url: {
         type: Sequelize.TEXT,
       },
+      details: {
+        type: Sequelize.ARRAY(Sequelize.JSONB),
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
