@@ -13,6 +13,27 @@ const snap = new midtransClient.Snap({
 
 module.exports = {
   createTransactionToken: async (req, res) => {
+    const cart = await cartService.list({
+      where: {
+        id_user: req.user.id,
+      },
+      include: [
+        {
+          model: Product,
+        },
+      ],
+      order: [['id', 'DESC']],
+    });
+
+    const item_details = cart.data.map(({ id_product, quantity, Product }) => {
+      return {
+        id: 'product-id-' + id_product,
+        price: Product.price,
+        quantity,
+        name: Product.name,
+      };
+    });
+
     const parameter = {
       transaction_details: {
         order_id: req.body.invoice,
@@ -21,6 +42,7 @@ module.exports = {
       credit_card: {
         secure: true,
       },
+      item_details,
       customer_details: {
         first_name: req.body.name,
         last_name: '',
@@ -53,6 +75,7 @@ module.exports = {
         id_user: req.user.id,
         token: transactionMidtrans.token,
         redirect_url: transactionMidtrans.redirect_url,
+        details: item_details,
       });
 
       const detailProducts = req.body.detail;

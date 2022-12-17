@@ -1,0 +1,15 @@
+name: DEPLOY_BE_LAPAK_SANTRI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set environment variable
+        env:
+          PORT: ${{secrets.PORT}}
+        run: echo $PORT

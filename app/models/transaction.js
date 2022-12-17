@@ -28,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       gross_amount: DataTypes.INTEGER,
       token: DataTypes.TEXT,
       redirect_url: DataTypes.TEXT,
+      details: DataTypes.ARRAY(DataTypes.JSONB),
     },
     {
       sequelize,
