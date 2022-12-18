@@ -2,8 +2,8 @@
   "name": "lapak-santri",
   "version": "1.0.0",
   "scripts": {
-    "start": "node bin/www.js",
-    "develop": "nodemon -q bin/www.js",
+    "start": "node index.js",
+    "develop": "nodemon -q index.js",
     "test": "jest",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
